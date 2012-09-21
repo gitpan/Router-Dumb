@@ -1,7 +1,7 @@
 use 5.14.0;
 package Router::Dumb;
 {
-  $Router::Dumb::VERSION = '0.001';
+  $Router::Dumb::VERSION = '0.002';
 }
 use Moose;
 # ABSTRACT: yet another dumb path router for URLs
@@ -25,6 +25,18 @@ sub add_route {
       $existing->path,
     );
   }
+
+  $self->_add_route($npath, $route);
+}
+
+
+sub add_route_unless_exists {
+  my ($self, $route) = @_;
+
+  confess "invalid route" unless $route->isa('Router::Dumb::Route');
+
+  my $npath = $route->normalized_path;
+  return if $self->_route_at( $npath );
 
   $self->_add_route($npath, $route);
 }
@@ -92,6 +104,7 @@ sub ordered_routes {
 1;
 
 __END__
+
 =pod
 
 =head1 NAME
@@ -100,7 +113,7 @@ Router::Dumb - yet another dumb path router for URLs
 
 =head1 VERSION
 
-version 0.001
+version 0.002
 
 =head1 SYNOPSIS
 
@@ -153,6 +166,17 @@ L<Router::Dumb::Helper::FileMapper> and L<Router::Dumb::Helper::RouteFile>.
 
 This method adds a new L<route|Router::Dumb::Route> to the router.
 
+=head2 add_route_unless_exists
+
+  $router->add_route_unless_exists({
+    parts  => [ qw( the :path parts ) ],
+    target => 'target-string',
+    ...
+  });
+
+This method adds a new L<route|Router::Dumb::Route> to the router unless it
+would conflict, in which case it does nothing.
+
 =head2 route
 
   my $match_or_undef = $router->route( $str );
@@ -176,10 +200,9 @@ Ricardo Signes <rjbs@cpan.org>
 
 =head1 COPYRIGHT AND LICENSE
 
-This software is copyright (c) 2011 by Ricardo Signes.
+This software is copyright (c) 2012 by Ricardo Signes.
 
 This is free software; you can redistribute it and/or modify it under
 the same terms as the Perl 5 programming language system itself.
 
 =cut
-

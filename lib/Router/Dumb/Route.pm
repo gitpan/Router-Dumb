@@ -1,7 +1,7 @@
 use 5.14.0;
 package Router::Dumb::Route;
 {
-  $Router::Dumb::Route::VERSION = '0.001';
+  $Router::Dumb::Route::VERSION = '0.002';
 }
 use Moose;
 # ABSTRACT: just one dumb route for use in a big dumb router
@@ -147,6 +147,7 @@ sub check {
 1;
 
 __END__
+
 =pod
 
 =head1 NAME
@@ -155,7 +156,7 @@ Router::Dumb::Route - just one dumb route for use in a big dumb router
 
 =head1 VERSION
 
-version 0.001
+version 0.002
 
 =head1 OVERVIEW
 
@@ -239,10 +240,9 @@ Ricardo Signes <rjbs@cpan.org>
 
 =head1 COPYRIGHT AND LICENSE
 
-This software is copyright (c) 2011 by Ricardo Signes.
+This software is copyright (c) 2012 by Ricardo Signes.
 
 This is free software; you can redistribute it and/or modify it under
 the same terms as the Perl 5 programming language system itself.
 
 =cut
-
