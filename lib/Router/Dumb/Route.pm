@@ -1,7 +1,7 @@
 use 5.14.0;
 package Router::Dumb::Route;
 {
-  $Router::Dumb::Route::VERSION = '0.002';
+  $Router::Dumb::Route::VERSION = '0.003';
 }
 use Moose;
 # ABSTRACT: just one dumb route for use in a big dumb router
@@ -156,7 +156,7 @@ Router::Dumb::Route - just one dumb route for use in a big dumb router
 
 =head1 VERSION
 
-version 0.002
+version 0.003
 
 =head1 OVERVIEW
 

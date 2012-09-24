@@ -1,7 +1,7 @@
 use 5.14.0;
 package Router::Dumb::Helper::RouteFile;
 {
-  $Router::Dumb::Helper::RouteFile::VERSION = '0.002';
+  $Router::Dumb::Helper::RouteFile::VERSION = '0.003';
 }
 use Moose;
 # ABSTRACT: something to read routes out of a dumb text file
@@ -16,7 +16,8 @@ use namespace::autoclean;
 has filename => (is => 'ro', isa => 'Str', required => 1);
 
 sub add_routes_to {
-  my ($self, $router) = @_;
+  my ($self, $router, $arg) = @_;
+  $arg ||= {};
 
   my $file = $self->filename;
 
@@ -29,8 +30,11 @@ sub add_routes_to {
              map  { chomp; s/#.*\z//r } <$fh>
   }
 
-  my $curr;
+  my $add_method = $arg->{ignore_conflicts}
+                 ? 'add_route_unless_exists'
+                 : 'add_route';
 
+  my $curr;
   for my $i (0 .. $#lines) {
     my $line = $lines[$i];
 
@@ -52,7 +56,7 @@ sub add_routes_to {
     }
 
     if ($curr and ($i == $#lines or $lines[ $i + 1 ] =~ /^\S/)) {
-      $router->add_route( Router::Dumb::Route->new($curr) );
+      $router->$add_method( Router::Dumb::Route->new($curr) );
       undef $curr;
     }
   }
@@ -70,7 +74,7 @@ Router::Dumb::Helper::RouteFile - something to read routes out of a dumb text fi
 
 =head1 VERSION
 
-version 0.002
+version 0.003
 
 =head1 OVERVIEW
 

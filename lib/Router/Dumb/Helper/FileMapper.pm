@@ -1,7 +1,7 @@
 use 5.14.0;
 package Router::Dumb::Helper::FileMapper;
 {
-  $Router::Dumb::Helper::FileMapper::VERSION = '0.002';
+  $Router::Dumb::Helper::FileMapper::VERSION = '0.003';
 }
 use Moose;
 # ABSTRACT: something to build routes out of a dumb tree of files
@@ -37,10 +37,15 @@ has parts_munger => (
 
 
 sub add_routes_to {
-  my ($self, $router) = @_;
+  my ($self, $router, $arg) = @_;
+  $arg ||= {};
 
   my $dir = $self->root;
   my @files = File::Find::Rule->file->in($dir);
+
+  my $add_method = $arg->{ignore_conflicts}
+                 ? 'add_route_unless_exists'
+                 : 'add_route';
 
   for my $file (@files) {
     my $path = $file =~ s{/INDEX$}{/}gr;
@@ -59,7 +64,7 @@ sub add_routes_to {
       target => $self->_target_munger->( $self, $file ),
     });
 
-    $router->add_route($route);
+    $router->$add_method($route);
   }
 }
 
@@ -75,7 +80,7 @@ Router::Dumb::Helper::FileMapper - something to build routes out of a dumb tree 
 
 =head1 VERSION
 
-version 0.002
+version 0.003
 
 =head1 OVERVIEW
 
@@ -144,10 +149,15 @@ parts for the route to be added.
 
 =head2 add_routes_to
 
-  $helper->add_routes_to( $router );
+  $helper->add_routes_to( $router, \%arg );
 
 This message tells the helper to scan its directory root and add routes to the
 given router.  The helper can be used over and over.
+
+Valid arguments are:
+
+  ignore_conflicts - if true, trying adding an existing route will be ignored,
+                     rather than fail
 
 =head1 AUTHOR
 
