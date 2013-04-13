@@ -1,7 +1,7 @@
 use 5.14.0;
 package Router::Dumb::Helper::RouteFile;
 {
-  $Router::Dumb::Helper::RouteFile::VERSION = '0.003';
+  $Router::Dumb::Helper::RouteFile::VERSION = '0.004';
 }
 use Moose;
 # ABSTRACT: something to read routes out of a dumb text file
@@ -74,7 +74,7 @@ Router::Dumb::Helper::RouteFile - something to read routes out of a dumb text fi
 
 =head1 VERSION
 
-version 0.003
+version 0.004
 
 =head1 OVERVIEW
 
@@ -101,7 +101,7 @@ Ricardo Signes <rjbs@cpan.org>
 
 =head1 COPYRIGHT AND LICENSE
 
-This software is copyright (c) 2012 by Ricardo Signes.
+This software is copyright (c) 2013 by Ricardo Signes.
 
 This is free software; you can redistribute it and/or modify it under
 the same terms as the Perl 5 programming language system itself.

@@ -1,6 +1,6 @@
 package Router::Dumb::Match;
 {
-  $Router::Dumb::Match::VERSION = '0.003';
+  $Router::Dumb::Match::VERSION = '0.004';
 }
 use Moose;
 # ABSTRACT: a dumb match against a dumb route
@@ -21,6 +21,7 @@ has matches => (
   traits   => [ 'Hash' ],
   handles  => {
     matches => 'elements',
+    _matches_href => 'shallow_clone',
   },
 );
 
@@ -36,7 +37,7 @@ Router::Dumb::Match - a dumb match against a dumb route
 
 =head1 VERSION
 
-version 0.003
+version 0.004
 
 =head1 OVERVIEW
 
@@ -51,7 +52,7 @@ Ricardo Signes <rjbs@cpan.org>
 
 =head1 COPYRIGHT AND LICENSE
 
-This software is copyright (c) 2012 by Ricardo Signes.
+This software is copyright (c) 2013 by Ricardo Signes.
 
 This is free software; you can redistribute it and/or modify it under
 the same terms as the Perl 5 programming language system itself.

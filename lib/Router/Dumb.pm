@@ -1,7 +1,7 @@
 use 5.14.0;
 package Router::Dumb;
 {
-  $Router::Dumb::VERSION = '0.003';
+  $Router::Dumb::VERSION = '0.004';
 }
 use Moose;
 # ABSTRACT: yet another dumb path router for URLs
@@ -113,7 +113,7 @@ Router::Dumb - yet another dumb path router for URLs
 
 =head1 VERSION
 
-version 0.003
+version 0.004
 
 =head1 SYNOPSIS
 
@@ -156,23 +156,27 @@ L<Router::Dumb::Helper::FileMapper> and L<Router::Dumb::Helper::RouteFile>.
 
 =head2 add_route
 
-  $router->add_route({
-    parts  => [ qw( the :path parts ) ],
-    target => 'target-string',
-    constraints => {
-      path => $moose_tc,
-    },
-  });
+  $router->add_route(
+    Router::Dumb::Route->new({
+      parts  => [ qw( the :path parts ) ],
+      target => 'target-string',
+      constraints => {
+        path => $moose_tc,
+      },
+    })
+  );
 
 This method adds a new L<route|Router::Dumb::Route> to the router.
 
 =head2 add_route_unless_exists
 
-  $router->add_route_unless_exists({
-    parts  => [ qw( the :path parts ) ],
-    target => 'target-string',
-    ...
-  });
+  $router->add_route_unless_exists(
+    Router::Dumb::Route->new({
+      parts  => [ qw( the :path parts ) ],
+      target => 'target-string',
+      ...
+    })
+  );
 
 This method adds a new L<route|Router::Dumb::Route> to the router unless it
 would conflict, in which case it does nothing.
@@ -200,7 +204,7 @@ Ricardo Signes <rjbs@cpan.org>
 
 =head1 COPYRIGHT AND LICENSE
 
-This software is copyright (c) 2012 by Ricardo Signes.
+This software is copyright (c) 2013 by Ricardo Signes.
 
 This is free software; you can redistribute it and/or modify it under
 the same terms as the Perl 5 programming language system itself.
