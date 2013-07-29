@@ -1,6 +1,6 @@
 package Router::Dumb::Match;
 {
-  $Router::Dumb::Match::VERSION = '0.004';
+  $Router::Dumb::Match::VERSION = '0.005';
 }
 use Moose;
 # ABSTRACT: a dumb match against a dumb route
@@ -37,7 +37,7 @@ Router::Dumb::Match - a dumb match against a dumb route
 
 =head1 VERSION
 
-version 0.004
+version 0.005
 
 =head1 OVERVIEW
 

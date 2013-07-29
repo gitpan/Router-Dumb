@@ -1,7 +1,7 @@
 use 5.14.0;
 package Router::Dumb;
 {
-  $Router::Dumb::VERSION = '0.004';
+  $Router::Dumb::VERSION = '0.005';
 }
 use Moose;
 # ABSTRACT: yet another dumb path router for URLs
@@ -113,7 +113,7 @@ Router::Dumb - yet another dumb path router for URLs
 
 =head1 VERSION
 
-version 0.004
+version 0.005
 
 =head1 SYNOPSIS
 

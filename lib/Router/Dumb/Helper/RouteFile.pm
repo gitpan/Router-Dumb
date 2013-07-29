@@ -1,7 +1,7 @@
 use 5.14.0;
 package Router::Dumb::Helper::RouteFile;
 {
-  $Router::Dumb::Helper::RouteFile::VERSION = '0.004';
+  $Router::Dumb::Helper::RouteFile::VERSION = '0.005';
 }
 use Moose;
 # ABSTRACT: something to read routes out of a dumb text file
@@ -74,7 +74,7 @@ Router::Dumb::Helper::RouteFile - something to read routes out of a dumb text fi
 
 =head1 VERSION
 
-version 0.004
+version 0.005
 
 =head1 OVERVIEW
 
